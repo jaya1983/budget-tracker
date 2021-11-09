@@ -11,6 +11,7 @@ const FILES_TO_CACHE = [
 
 const CACHE_NAME = "static-cache-v2";
 const DATA_CACHE_NAME = "data-cache-v1";
+const APP_PREFIX = "static-cache-";
 
 // install
 self.addEventListener("install", function (evt) {
@@ -25,21 +26,22 @@ self.addEventListener("install", function (evt) {
 });
 
 // activate
-self.addEventListener("activate", function (evt) {
-  evt.waitUntil(
-    caches.keys().then(keyList => {
-      return Promise.all(
-        keyList.map(key => {
-          if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
-            console.log("Removing old cache data", key);
-            return caches.delete(key);
-          }
-        })
-      );
+self.addEventListener('activate', function (e) {
+  e.waitUntil(
+    caches.keys().then(function (keyList) {
+      let cacheKeeplist = keyList.filter(function (key) {
+        return key.indexOf(APP_PREFIX);
+      })
+      cacheKeeplist.push(CACHE_NAME);
+
+      return Promise.all(keyList.map(function (key, i) {
+        if (cacheKeeplist.indexOf(key) === -1) {
+          console.log('deleting cache : ' + keyList[i] );
+          return caches.delete(keyList[i]);
+        }
+      }));
     })
   );
-
-  self.clients.claim();
 });
 
 // fetch
@@ -53,7 +55,6 @@ self.addEventListener("fetch", function (evt) {
             if (response.status === 200) {
               cache.put(evt.request.url, response.clone());
             }
-
             return response;
           })
           .catch(err => {

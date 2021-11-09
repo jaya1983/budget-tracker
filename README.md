@@ -1,12 +1,12 @@
  
-# budget-tracker
+# budget-tracker 
 
 
-Check out the App here!:
+Check out the App here!: https://cryptic-crag-86890.herokuapp.com/
+
 ## Table of Contents
 
 * [Description](#description)
-* [Deployment](#deployment)
 * [Built With](#built-with)
 * [Authors](#authors)
 * [ScreenShots](#screenshots)
@@ -19,9 +19,6 @@ Enter deposits offline
 Enter expenses offline. 
 
 When brought back online, the offline entries should be added to tracker.
-
-## Deployment
-
 
 ## Built With
 
@@ -39,5 +36,5 @@ Jaya Gudipalli
 
 ## screenshots
 
-
+![](/assets/ScreenShot_1.PNG)
 

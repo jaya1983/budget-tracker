@@ -3,9 +3,11 @@ let myChart;
 
 fetch("/api/transaction")
   .then(response => {
+
     return response.json();
   })
   .then(data => {
+    console.log("data", data);
     // save db data on global variable
     transactions = data;
 
