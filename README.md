@@ -36,5 +36,5 @@ Jaya Gudipalli
 
 ## screenshots
 
-![](/assets/ScreenShot_1.PNG)
+![](/Assets/ScreenShot_1.PNG)
 
